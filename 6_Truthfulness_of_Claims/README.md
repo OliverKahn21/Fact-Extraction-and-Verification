@@ -1,1 +1,5 @@
+# 6.Truthfulness of Claims.
+
+Filter out the ’NOT ENOUGH INFO’ claims and only keep the ’SUPPORTS’ or ’REFUTES’ claims in the train.jsonl and dev.jsonl datasets. Using the relevant sentences specified in the ’evidence’ field as your training data and using their cor- responding truthfulness labels in the train.jsonl file, build a neural network based model to assess the truthfulness of a claim in the training subset. No need to retrieve documents and select sentences for this part, just use the sentences specified in the ’evidence’ field in the train.jsonl and dev.jsonl.You may use existing packages like Tensorflow or PyTorch in this subtask. You are expected to propose your own network architecture for the neural network. Report the performance of your system in the labelled development subset using evaluation metrics you have implemented. Furthermore, describe the motivation behind your proposed neural architecture. The marks you get will be based on the quality and novelty of your proposed neural network architecture, as well as its performance.
+
 
