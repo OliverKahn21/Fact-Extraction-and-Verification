@@ -1,0 +1,88 @@
+Important Information
+================
+Most of the auxiliary files are too large or not important to including in this package. All the code that generates the auxiliary file are including in each question's code file.
+
+For the auxiliary files that using in more than one questions, I also contain the code in each separately questions. So by changing the path of write and read auxiliary files, you can running each question separately.
+
+I run the code in google colab, so in each code file, it including 'from google.colab import drive', 'drive.mount('/content/gdrive')',you can ignore this code when running.
+
+**PLEASE change the PATH in the very beginning of each ipynb file.
+PATH = '/content/gdrive/My Drive/IRDM_CHFX2/'
+**PLEASE also change the PATH of train.jsonl, dev.jsonl, test.jsonl, wiki-pages and GoogleNews-vectors-negative300.bin.
+My PATH for train.jsonl, dev.jsonl, test.jsonl and GoogleNews-vectors-negative300.bin = PATH + 'data/train.jsonl'
+My PATH for wiki-pages = PATH + 'data/wiki-pages/wiki-pages/'
+My PATH for all the auxiliary files such as traindata_Subtask4.txt = PATH
+
+Provided supplementary files
+===================
+Q1/Q1_term_frequency.csv : A CSV file that shows the frequency of top 500 terms.
+Q1/Q1_Zipf's_Law.png: The curve that shows the graph of Zipf's Law.
+
+Q2/Q2_claim_TF-IDF.csv: A CSV file that shows the TF_IDF of the top 5 frequent words of the 10 claims.
+Q2/Q2_vector_space.csv: A CSV file that shows the five most similar documents from Vector Space.
+
+Q3/Four CSV files are the output of probabilistic document retrieval
+
+Q4/traindata_Subtask4.txt: A string of the output of word2vec and the label. The structure  is like the append (' '.join(vector_of_claim) + ' ' + ' '.join(vector_of_sentence) + ' 0/1' + '\n')
+Q4/devdata_Subtask4.txt: A string of the output of word2vec and the label to the top 10 dev set claims. The structure  is like the append (' '.join(vector_of_claim) + ' ' + ' '.join(vector_of_sentence) + ' 0/1' + '\n')
+Q4/train_x.dat: The data from traindata_Subtask4.txt by under sampling with 153 positive samples and 153 negative samples.
+Q4/train_y.dat: The data from traindata_Subtask4.txt by under sampling with 153 positive samples and 153 negative samples.
+Q4/Q4_ROC.png: The ROC curve, RMSE, accuracy, AUC, test loss of the sampling data and the logistic model.
+
+Q5/Q5_precision_recall_f1.png: The evaluation precision, recall and F1 metrics of the sampling data and the logistic model.
+
+Q6/traindata_Subtask6.txt: A string of the output of word2vec and the label. The structure  is like the append (' '.join(vector_of_claim/vector_of_sentence) + ' ' + label + '\n')
+Q6/devdata_Subtask6.txt: similar like the output of train set above.
+
+Q8/Q8_result.txt: The final prediction output of my model based on the test set in accordance with the prescribed format on moodle.
+Q8/Q8_Truthfulness_accuracy.png: The accuracy of the text-classification model of predicting the truthfulness of claim in validation process.
+Q8/text-classification: This is the folder including the code I used to architect the final model.
+
+Missing supplementary files
+===========================
+Many functions write by myself is split into several parts because of the limited memory. This operation causes many auxiliary file in the data pre-processing to be output and saved on the hard disk and to be read in the next function. These files related to data preprocessing are not included because it do not have any important output or calculation and the file is too large (Most of them are over 100 MB). The function to produce this files are all provided in the code and you can reproduce ALL the files by change the path of wiki-pages, data sets and the output of process files.
+
+I will show the structure and explanation of all the Missing files by question number:
+
+fever_io.py: The code provided by you.
+GoogleNews-vectors-negative300.bin: the dictionary support word2vec
+Q1:
+n_dict_Subtask1.npy : A dictionary which the key is the term in 109 wiki-pages and the value is the frequency in the 'text' of wiki-pages. (It exclude most of the punctuation ,lower the letter in sentences and remove some noice like '-LRB-'.)(90MB)
+Q2:
+diction_Subtask2.npy : A dictionary which the key is the 'id' of documents and the value is 'text' in 109 wiki-pages.(3GB)
+dictory_Subtask2.npy: A dictionary which the key is the terms in 109 wiki-pages and the value is the id of the documents including this term.(2GB)
+Q3:
+n_dict_Subtask3.npy: A dictionary which the key is the term and the value is the frequency of the term.(98MB)
+Q4 & Q5:
+pre_train_1_Subtask4.npy: A dictionary same as the n_dict_Subtask3.npy.(98MB)
+pre_train_2_Subtask4.npy: A dictionary which the key is the 'claim' in train set and the value is the 'id' of the five most similar documents obtain through Laplace Smoothing. It including the top 5 similar documents of 113 claims in train set and it spend a lot of time so I including it in the file.
+pre_train_3_Subtask4.txt: a dictionary which the key is the document 'id' that appear in any of the claim's five similar documents and the value is 'lines' in wiki-pages.
+pre_train_4_Subtask4.txt: A list with the structure like ([claim, evidence_id, sentence_number],[...],...)
+pre_dev_1_Subtask4.npy: similar like the output of train set above. (As an alternative，I including the final dev data directly)
+pre_dev_2_Subtask4.npy: similar like the output of train set above. (As an alternative，I including the final dev data directly)
+pre_dev_3_Subtask4.txt: similar like the output of train set above. (As an alternative，I including the final dev data directly)
+pre_dev_4_Subtask4.txt: similar like the output of train set above. (As an alternative，I including the final dev data directly)
+Q6:
+prepare_train_1_Subtask6.txt: A dictionary which the key is the 'id' and the value is 'line' in 109 wiki-pages.
+prepare_dev_1_Subtask6.txt: similar like the output of train set above.
+
+Code files
+==========
+I use the structure provided by you so the code for each Subtask is in the folder of each of them.
+The code for Subtask4 and Subtask5 is the same. The code for Subtask5 is at the end of the ipynb.
+The explanation of the functions, including input, output, logic, algorithm and purpose, is at the beginning of each function.
+
+Q8:
+cnn_pytorch.py: This is the prediction code I used for the final model. It is provided in the folder 'text-classification' and I acknowledge it is a improvement from: https://github.com/gaussic/text-classification
+
+Running the code
+================
+The code of each question can be run separately.
+You need to change the path to run the code. Many functions write by myself is split into several parts because of the limited memory. This operation causes many auxiliary file in the data pre-processing to be output and saved on the hard disk and to be read in the next function. You also need to change the path of auxiliary file.
+I define the PATH = '/content/gdrive/My Drive/IRDM_CHFX2/' at the beginning of each file.
+So you only need to change the PATH and put the data in the structure like following:
+
+The path of GoogleNews-vectors-negative300.bin is: '/content/gdrive/My Drive/IRDM_CHFX2/data/GoogleNews-vectors-negative300.bin'
+The path of data sets is :'/content/gdrive/My Drive/IRDM_CHFX2/data/***.jsonl'
+The path of wiki-pages is: '/content/gdrive/My Drive/IRDM_CHFX2/data/wiki-pages/wiki-pages/'
+The path of saving and loading the data pre-processing is: '/content/gdrive/My Drive/IRDM_CHFX2/'
