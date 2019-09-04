@@ -33,8 +33,6 @@ You can either propose new machine learning models, new ways of sampling/using t
 
 ## This project including the following files:
 
-1.Project_Description.pdf: This is the original project description including the project descritption of 8 subtask.
+1.Report.pdf: The report about this information retrieval and data mining project.
 
-2.Report.pdf: The report about this information retrieval and data mining project.
-
-3.instructions.txt: The exlaination of how to run the code to reproduce the result shown in the report.
+2.instructions.txt: The exlaination of how to run the code to reproduce the result shown in the report.
